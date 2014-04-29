@@ -51,11 +51,17 @@ namespace AspNetExtendingIdentityRoles.Models
         {
             var user = _userManager.FindById(userId);
             var currentRoles = new List<IdentityUserRole>();
+            
+            var Db = new ApplicationDbContext();
+
+            // Add all available roles to the list of EditorViewModels:
+            var allRoles = Db.Roles;
 
             currentRoles.AddRange(user.Roles);
             foreach (var role in currentRoles)
             {
-                _userManager.RemoveFromRole(userId, role.Role.Name);
+                var roleName = allRoles.First(r => r.Id == role.RoleId).Name;
+                _userManager.RemoveFromRole(userId, roleName);
             }
         }
 

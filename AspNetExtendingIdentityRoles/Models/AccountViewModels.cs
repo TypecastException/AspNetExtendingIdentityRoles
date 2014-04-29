@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 // New namespace imports:
+using System.Linq;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 
@@ -152,8 +153,9 @@ namespace AspNetExtendingIdentityRoles.Models
             // which the current user is a member:
             foreach (var userRole in user.Roles)
             {
+                var role = allRoles.First(r => r.Id == userRole.RoleId);
                 var checkUserRole =
-                    this.Roles.Find(r => r.RoleName == userRole.Role.Name);
+                    this.Roles.Find(r => r.RoleName == role.Name);
                 checkUserRole.Selected = true;
             }
         }

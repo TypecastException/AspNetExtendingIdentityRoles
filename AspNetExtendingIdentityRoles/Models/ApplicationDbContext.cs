@@ -54,9 +54,9 @@ namespace AspNetExtendingIdentityRoles.Models
                 modelBuilder.Entity<IdentityUserLogin>().HasKey((IdentityUserLogin l) => 
                     new { UserId = l.UserId, LoginProvider = l.LoginProvider, ProviderKey = l.ProviderKey }).ToTable("AspNetUserLogins");
 
-            entityTypeConfiguration.HasRequired<IdentityUser>((IdentityUserLogin u) => u.User);
-            EntityTypeConfiguration<IdentityUserClaim> table1 = modelBuilder.Entity<IdentityUserClaim>().ToTable("AspNetUserClaims");
-            table1.HasRequired<IdentityUser>((IdentityUserClaim u) => u.User);
+            //entityTypeConfiguration.HasRequired<IdentityUser>((IdentityUserLogin u) => u.User);
+            //EntityTypeConfiguration<IdentityUserClaim> table1 = modelBuilder.Entity<IdentityUserClaim>().ToTable("AspNetUserClaims");
+            //table1.HasRequired<IdentityUser>((IdentityUserClaim u) => u.User);
 
             // Add this, so that IdentityRole can share a table with ApplicationRole:
             modelBuilder.Entity<IdentityRole>().ToTable("AspNetRoles");
